@@ -3,8 +3,6 @@
 
 
 void Welcome(void) {
-    char *symbol = "*******";
-    printf("%s Bienvenue!%s\n\n%sGestion Des Produits%s\n", symbol, symbol, symbol, symbol);
     printf("\nChoisie Votre Operation par numbre: \n"
            "0: Exit le Program\n"
            "1: Ajouter Un Produit\n"
