@@ -19,9 +19,9 @@ void addProduct(void);
 void addProducts(int limit);
 void readProducts(void);
 void deleteProduct(int targetcode);
-void searchProduct(int identifier);
 
-// Search types
+// Search & their types
+void searchProduct(int identifier);
 void searchByCode(int target_code);
 void searchByquantite(int targetquantity);
 void searchBystock(void);
@@ -29,9 +29,17 @@ void searchBystock(void);
 // File operations
 FILE *openFile(char *filename, char *mode);
 
+// Stock Operations
+void addStock(int target_code);
+void displayStats(void);
+void sellProduct(int code, int quantity);
+
 // Auxlarry Function;
 void Welcome(void);
 float CalcTTC(float price);
+void sortByprice(void);
+void sortByAlphbet(void);
+
 
 
 #endif /* MAIN_H */
