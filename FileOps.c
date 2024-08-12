@@ -1,33 +1,12 @@
 #include "main.h"
 
 
-FILE *openFile(char *mode) {
-    return fopen("data.txt", mode);
-}
+FILE *openFile(char *filename, char *mode) {
 
-int openWrite(Produit_t *newProduct) {
-
-    FILE *fp = openFile("a");
+    FILE *fp = fopen(filename, mode);
     if (fp == NULL) {
-        printf("something Wrong with Write in the file!!");
-        return(1);
-    }
-    fprintf(fp,"%d %s %d %.2f\n", newProduct->code,
-                              newProduct->name,
-                              newProduct->quantite,
-                              newProduct->price);
-    fclose(fp);
-    return (0);
-}
-
-
-FILE *openRead(void) {
-    FILE *fp = openFile("r");
-
-    if (fp == NULL) {
-        printf("Error: Can't Read File");
+        printf("something Wrong in the file!!");
         exit(1);
     }
-
     return fp;
 }

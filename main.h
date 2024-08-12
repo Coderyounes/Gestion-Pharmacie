@@ -1,7 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 #define MAX 1024
-
+#define fileName "data.txt"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -16,17 +16,14 @@ typedef struct produit
 
 // Product Operations
 void addProduct(void);
+void addProducts(int limit);
 void readProducts(void);
 // void updateProduct(void);
 // void deleteProduct(void);
+void searchProduct(void);
 
 // File operations
-FILE *openFile(char *mode);
-int openWrite(Produit_t *newProduct);
-// void Update(void);
-FILE *openRead(void);
-// void Delete(void);
-
+FILE *openFile(char *filename, char *mode);
 
 // Auxlarry Function;
 void Welcome(void);

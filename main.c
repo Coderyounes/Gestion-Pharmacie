@@ -5,7 +5,7 @@
 */
 
 int main(void) {
-    int Ops;
+    int Ops, limit;
     FILE *fp;
     char *symbol = "*******";
     printf("%s Bienvenue!%s\n\n%sGestion Des Produits%s\n", symbol, symbol, symbol, symbol);
@@ -22,7 +22,9 @@ int main(void) {
                 addProduct();
                 break;
             case 2:
-                // TODO: call AddProducts function
+                printf("How many Product you want to Enter: ");
+                scanf("%d", &limit);
+                addProducts(limit);
                 break;
             case 3:
                 readProducts();

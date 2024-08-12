@@ -5,6 +5,7 @@
 void addProduct(void) {
     char buffer[MAX];
     int status;
+    FILE *fp;
     Produit_t *newProduct = malloc(sizeof(Produit_t));
 
     if (!newProduct) {
@@ -12,6 +13,7 @@ void addProduct(void) {
         exit(1);
     }
     getchar();
+    fp = openFile(fileName, "a");
     printf("Enter Code, Name, quantite, price (separated by spaces): ");
     if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
         sscanf(buffer,"%d %s %d %f", &newProduct->code,
@@ -19,12 +21,22 @@ void addProduct(void) {
                                      &newProduct->quantite,
                                      &newProduct->price);
     }
-    status = openWrite(newProduct);
-    if (status == 0) {
-        printf("Data Sotred");
-    } else {
-        printf("Failed to Store Data!");
-    }
+
+    fprintf(fp,"%d %s %d %.2f\n", newProduct->code,
+                          newProduct->name,
+                          newProduct->quantite,
+                          newProduct->price);
+    fclose(fp);
+}
+
+void addProducts(int limit) {
+
+     int count = 0;
+
+     while(count <= limit) {
+         addProduct();
+         count++;
+     }
 }
 
 void readProducts(void) {
@@ -35,7 +47,7 @@ void readProducts(void) {
     int quantite;
     float price;
 
-    FILE *fp = openRead();
+    FILE *fp = openFile(fileName, "r");
 
     while(fgets(buffer, sizeof(buffer), fp)) {
         sscanf(buffer, "%d %s %d %f", &code, name, &quantite, &price);
@@ -47,4 +59,9 @@ void readProducts(void) {
     }
 
     fclose(fp);
+}
+
+
+void searchProduct(void) {
+    // TODO: Search need to be by Code, by quantité, by Stok Stat(Stock < 3)
 }
