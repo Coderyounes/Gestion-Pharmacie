@@ -1,7 +1,9 @@
 #ifndef MAIN_H
 #define MAIN_H
+
 #define MAX 1024
 #define fileName "data.txt"
+#define FMEMO "Failed to Allocate Memory!"
 #include <stdio.h>
 #include <stdlib.h>
 

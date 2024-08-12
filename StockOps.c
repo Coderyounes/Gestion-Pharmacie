@@ -9,7 +9,7 @@ void addStock(int target_code, int aliment) {
 
     tempProduct = malloc(sizeof(Produit_t));
     if (!tempProduct) {
-        perror("Failed to Allocate Memory!");
+        perror(FMEMO);
         exit(1);
     }
     fp = openFile(fileName, "r");

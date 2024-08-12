@@ -9,7 +9,7 @@ void addProduct(void) {
     Produit_t *newProduct = malloc(sizeof(Produit_t));
 
     if (!newProduct) {
-        perror("Failed to Allocate Memory!");
+        perror(FMEMO);
         exit(1);
     }
     fp = openFile(fileName, "a");
@@ -61,42 +61,53 @@ void addProducts(int limit) {
 void readProducts(void) {
     // TODO: Sort the data based on alphabitiques &  based on Prices from High to Low
     char buffer[MAX];
-    int code;
-    char name[MAX];
-    int quantite;
-    float price;
-
+    Produit_t *tempProduct = malloc(sizeof(Produit_t));
+    if (tempProduct == NULL) {
+        perror(FMEMO);
+        exit(1);
+    }
     FILE *fp = openFile(fileName, "r");
 
     while(fgets(buffer, sizeof(buffer), fp)) {
-        sscanf(buffer, "%d %s %d %f", &code, name, &quantite, &price);
-        printf("Product %d: %s, Price: %.2f DH, Price TTC:  %.2f DH, Etat De Stock: %d\n", code,
-                                                                                            name,
-                                                                                            price,
-                                                                                            CalcTTC(price),
-                                                                                            quantite);
+        sscanf(buffer, "%d %s %d %f", &tempProduct->code,
+                                      tempProduct->name,
+                                      &tempProduct->quantite,
+                                      &tempProduct->price);
+        printf("Product %d: %s, Price: %.2f DH, Price TTC:  %.2f DH, Etat De Stock: %d\n", tempProduct->code,
+                                                                                            tempProduct->name,
+                                                                                            tempProduct->price,
+                                                                                            CalcTTC(tempProduct->price),
+                                                                                            tempProduct->quantite);
     }
-
     fclose(fp);
+    free(tempProduct);
 }
 
 void deleteProduct(int targetcode) {
     char buffer[MAX];
-    int code;
-    char name[MAX];
-    int quantity;
-    float price;
+    Produit_t *tempProduct = malloc(sizeof(Produit_t));
+    if (tempProduct == NULL) {
+        perror(FMEMO);
+        exit(1);
+    }
     FILE *fp, *temp;
     fp = openFile(fileName, "r");
     temp = openFile("temp.txt", "w+");
     while(fgets(buffer, sizeof(buffer), fp) != NULL) {
-        sscanf(buffer, "%d %s %d %f", &code, name, &quantity, &price);
-        if (code != targetcode) {
-            fprintf(temp,"%d %s %d %.2f\n", code, name, quantity, price);
+        sscanf(buffer, "%d %s %d %f", &tempProduct->code,
+                                      tempProduct->name,
+                                      &tempProduct->quantite,
+                                      &tempProduct->price);
+        if (tempProduct->code != targetcode) {
+            fprintf(temp,"%d %s %d %.2f\n", tempProduct->code,
+                                            tempProduct->name,
+                                            tempProduct->quantite,
+                                            tempProduct->price);
         }
     }
     fclose(fp);
     fclose(temp);
     remove(fileName);
     rename("temp.txt", fileName);
+    free(tempProduct);
 }
