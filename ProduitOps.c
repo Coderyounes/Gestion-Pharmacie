@@ -26,3 +26,20 @@ void addProduct(void) {
         printf("Failed to Store Data!");
     }
 }
+
+void readProducts(void) {
+    char buffer[MAX];
+    int code;
+    char name[MAX];
+    int quantite;
+    float price;
+
+    FILE *fp = openRead();
+
+    while(fgets(buffer, sizeof(buffer), fp)) {
+        sscanf(buffer, "%d %s %d %f", &code, name, &quantite, &price);
+        printf("Product %d: %s, Price: %.2f DH, Etat De Stock: %d\n", code, name, price, quantite);
+    }
+
+    fclose(fp);
+}

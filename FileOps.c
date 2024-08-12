@@ -1,13 +1,13 @@
 #include "main.h"
 
 
-FILE *openFile(void) {
-    return fopen("data.txt", "a");
+FILE *openFile(char *mode) {
+    return fopen("data.txt", mode);
 }
 
 int openWrite(Produit_t *newProduct) {
 
-    FILE *fp = openFile();
+    FILE *fp = openFile("a");
     if (fp == NULL) {
         printf("something Wrong with Write in the file!!");
         return(1);
@@ -18,4 +18,16 @@ int openWrite(Produit_t *newProduct) {
                               newProduct->price);
     fclose(fp);
     return (0);
+}
+
+
+FILE *openRead(void) {
+    FILE *fp = openFile("r");
+
+    if (fp == NULL) {
+        printf("Error: Can't Read File");
+        exit(1);
+    }
+
+    return fp;
 }

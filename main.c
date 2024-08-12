@@ -25,7 +25,7 @@ int main(void) {
                 // TODO: call AddProducts function
                 break;
             case 3:
-                // TODO: Call DisplayProduct function
+                readProducts();
                 break;
             case 4:
                 // TODO: Call DeleteProduct Function

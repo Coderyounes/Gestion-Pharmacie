@@ -22,20 +22,17 @@ typedef struct produit
 
 // Product Operations
 void addProduct(void);
-// void readProducts(void);
+void readProducts(void);
 // void updateProduct(void);
 // void deleteProduct(void);
 
 // File operations
-FILE *openFile(void);
+FILE *openFile(char *mode);
 int openWrite(Produit_t *newProduct);
 // void Update(void);
-// void Read(void);
+FILE *openRead(void);
 // void Delete(void);
 
-// Memory Operations
-Produit_t allocateMemory(void);
-void freeMemory(Produit_t *product);
 
 // Auxlarry Function;
 void Welcome(void);
