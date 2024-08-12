@@ -6,6 +6,7 @@
 
 int main(void) {
     int Ops;
+    FILE *fp;
     char *symbol = "*******";
     printf("%s Bienvenue!%s\n\n%sGestion Des Produits%s\n", symbol, symbol, symbol, symbol);
 
@@ -13,7 +14,6 @@ int main(void) {
         Welcome();
         printf("Enter the Operation Number: ");
         scanf("%d", &Ops);
-
         switch(Ops) {
             case 0:
                 printf("Program is Closing....\n");

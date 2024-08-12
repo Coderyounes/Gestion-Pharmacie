@@ -1,8 +1,10 @@
 #ifndef MAIN_H
 #define MAIN_H
+#define MAX 1024;
 
 #include <stdio.h>
 #include <stdlib.h>
+
 
 // TODO: Define product Struct
 // TODO: Define product Operations
@@ -13,18 +15,19 @@
 typedef struct produit
 {
     int code;
-    char *name;
-    int quatite;
+    char name[MAX];
+    int quantite;
     float price;
 } Produit_t;
 
 // Product Operations
-void addProduct(Produit_t *newProduct);
+void addProduct(void);
 // void readProducts(void);
 // void updateProduct(void);
 // void deleteProduct(void);
 
 // File operations
+FILE *openFile(void);
 int openWrite(Produit_t *newProduct);
 // void Update(void);
 // void Read(void);
