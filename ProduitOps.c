@@ -115,7 +115,7 @@ void deleteProduct(int targetcode) {
     while(fgets(buffer, sizeof(buffer), fp) != NULL) {
         sscanf(buffer, "%d %s %d %f", &code, name, &quantity, &price);
         if (code != targetcode) {
-            fprintf(temp,"\n%d %s %d %.2f", code, name, quantity, price);
+            fprintf(temp,"%d %s %d %.2f\n", code, name, quantity, price);
         }
     }
     fclose(fp);
