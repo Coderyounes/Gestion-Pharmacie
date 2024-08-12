@@ -34,10 +34,10 @@ int main(void) {
                 break;
             case 5:
                 printf("Select Search mode\n0: Break\n1: Search by Code\n2: Search By quantite\n3: Search By Stock\n");
+                scanf("%d", &identifier);
                 if (identifier == 0) {
                     break;
                 }
-                scanf("%d", &identifier);
                 searchProduct(identifier);
                 break;
             case 6:

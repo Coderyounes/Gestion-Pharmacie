@@ -22,7 +22,7 @@ void deleteProduct(int code);
 void searchProduct(int identifier);
 
 // Search types
-void searchByCode(int code);
+void searchByCode(int target_code);
 void searchByquantite(void);
 void searchBystock(void);
 
