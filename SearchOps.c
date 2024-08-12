@@ -54,3 +54,25 @@ void searchBystock(void) {
     }
     fclose(fp);
 }
+
+void searchProduct(int identifier) {
+    int code, quantity;
+    switch(identifier) {
+        case 1:
+            printf("Enter Product Code: ");
+            scanf("%d", &code);
+            searchByCode(code);
+            break;
+        case 2:
+            printf("Enter the Quantity: ");
+            scanf("%d", &quantity);
+            searchByquantite(quantity);
+            break;
+        case 3:
+            searchBystock();
+            break;
+        default:
+            printf("Error: no Search mode Exist");
+    }
+
+}
