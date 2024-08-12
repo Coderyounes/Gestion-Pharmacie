@@ -12,8 +12,8 @@ void addProduct(void) {
         perror("Failed to Allocate Memory!");
         exit(1);
     }
-    getchar();
     fp = openFile(fileName, "a");
+    getchar();
     printf("Enter Code, Name, quantite, price (separated by spaces): ");
     if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
         sscanf(buffer,"%d %s %d %f", &newProduct->code,
@@ -30,13 +30,32 @@ void addProduct(void) {
 }
 
 void addProducts(int limit) {
-
+     char buffer[MAX];
      int count = 0;
-
-     while(count <= limit) {
-         addProduct();
+     FILE *fp;
+     fp = openFile(fileName, "a");
+     while (count < limit) {
+         Produit_t *newProduct = malloc(sizeof(Produit_t));
+         if (!newProduct) {
+             perror("Failed to Allocate Memory");
+             exit(1);
+         }
+         printf("Enter Code, Name, quantite, price (separated by spaces):");
+         getchar();
+         if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
+             sscanf(buffer,"%d %s %d %f", &newProduct->code,
+                                          newProduct->name,
+                                          &newProduct->quantite,
+                                          &newProduct->price);
+         }
+         fprintf(fp,"\n%d %s %d %.2f", newProduct->code,
+                               newProduct->name,
+                               newProduct->quantite,
+                               newProduct->price);
          count++;
+         free(newProduct);
      }
+     fclose(fp);
 }
 
 void readProducts(void) {
