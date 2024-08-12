@@ -82,7 +82,7 @@ void readProducts(void) {
 
 
 void searchProduct(int identifier) {
-    int code;
+    int code, quantity;
     switch(identifier) {
         case 1:
             printf("Enter Product Code: ");
@@ -90,7 +90,9 @@ void searchProduct(int identifier) {
             searchByCode(code);
             break;
         case 2:
-            searchByquantite();
+            printf("Enter the Quantity: ");
+            scanf("%d", &quantity);
+            searchByquantite(quantity);
             break;
         case 3:
             searchBystock();
