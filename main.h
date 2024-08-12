@@ -30,7 +30,7 @@ void searchBystock(void);
 FILE *openFile(char *filename, char *mode);
 
 // Stock Operations
-void addStock(int target_code);
+void addStock(int target_code, int aliment);
 void displayStats(void);
 void sellProduct(int code, int quantity);
 
