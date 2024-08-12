@@ -103,6 +103,23 @@ void searchProduct(int identifier) {
 
 }
 
-void deleteProduct(int code) {
-    // TODO: remove Product based on Product Code
+void deleteProduct(int targetcode) {
+    char buffer[MAX];
+    int code;
+    char name[MAX];
+    int quantity;
+    float price;
+    FILE *fp, *temp;
+    fp = openFile(fileName, "r");
+    temp = openFile("temp.txt", "w+");
+    while(fgets(buffer, sizeof(buffer), fp) != NULL) {
+        sscanf(buffer, "%d %s %d %f", &code, name, &quantity, &price);
+        if (code != targetcode) {
+            fprintf(temp,"\n%d %s %d %.2f", code, name, quantity, price);
+        }
+    }
+    fclose(fp);
+    fclose(temp);
+    remove(fileName);
+    rename("temp.txt", fileName);
 }

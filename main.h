@@ -18,7 +18,7 @@ typedef struct produit
 void addProduct(void);
 void addProducts(int limit);
 void readProducts(void);
-void deleteProduct(int code);
+void deleteProduct(int targetcode);
 void searchProduct(int identifier);
 
 // Search types

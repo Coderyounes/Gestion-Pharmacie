@@ -5,7 +5,7 @@
 */
 
 int main(void) {
-    int Ops, limit, identifier;
+    int Ops, limit, identifier, code;
     FILE *fp;
     char *symbol = "*******";
     printf("%s Bienvenue!%s\n\n%sGestion Des Produits%s\n", symbol, symbol, symbol, symbol);
@@ -30,7 +30,9 @@ int main(void) {
                 readProducts();
                 break;
             case 4:
-                // TODO: Call DeleteProduct Function
+                printf("Delete Operation, Enter Product Code: ");
+                scanf("%d", &code);
+                deleteProduct(code);
                 break;
             case 5:
                 printf("Select Search mode\n0: Break\n1: Search by Code\n2: Search By quantite\n3: Search By Stock\n");
