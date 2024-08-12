@@ -5,7 +5,7 @@
 */
 
 int main(void) {
-    int Ops, limit, identifier, code, aliment;
+    int Ops, limit, identifier, code, aliment, unit;
     FILE *fp;
     char *symbol = "*******";
     printf("%s Bienvenue!%s\n\n%sGestion Des Produits%s\n", symbol, symbol, symbol, symbol);
@@ -47,11 +47,15 @@ int main(void) {
                 printf("Enter Product Code: ");
                 scanf("%d", &code);
                 printf("How much unit to add: ");
-                scanf("%d", &aliment);
-                addStock(code, aliment);
+                scanf("%d", &unit);
+                addStock(code, unit);
                 break;
             case 7:
-                // TODO: call buyProduct function
+                printf("Enter Product Code: ");
+                scanf("%d", &code);
+                printf("How much unit to sell: ");
+                scanf("%d", &aliment);
+                sellProduct(code, aliment);
                 break;
             case 8:
                 // TODO: call DisplayStats function

@@ -17,5 +17,6 @@ void Welcome(void) {
 
 
 float CalcTTC(float price) {
-    return ((15/price) * 100) + price;
+    float new = (price * 15) / 100 ;
+    return new + price;
 }

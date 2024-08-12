@@ -4,9 +4,11 @@
 #define MAX 1024
 #define fileName "data.txt"
 #define FMEMO "Failed to Allocate Memory!"
+#define sellFile "sellLog.txt"
+
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <time.h>
 
 typedef struct produit
 {
