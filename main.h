@@ -18,9 +18,13 @@ typedef struct produit
 void addProduct(void);
 void addProducts(int limit);
 void readProducts(void);
-// void updateProduct(void);
-// void deleteProduct(void);
-void searchProduct(void);
+void deleteProduct(int code);
+void searchProduct(int identifier);
+
+// Search types
+void searchByCode(int code);
+void searchByquantite(void);
+void searchBystock(void);
 
 // File operations
 FILE *openFile(char *filename, char *mode);

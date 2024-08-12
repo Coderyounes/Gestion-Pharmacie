@@ -81,6 +81,26 @@ void readProducts(void) {
 }
 
 
-void searchProduct(void) {
-    // TODO: Search need to be by Code, by quantité, by Stok Stat(Stock < 3)
+void searchProduct(int identifier) {
+    int code;
+    switch(identifier) {
+        case 1:
+            printf("Enter Product Code: ");
+            scanf("%d", &code);
+            searchByCode(code);
+            break;
+        case 2:
+            searchByquantite();
+            break;
+        case 3:
+            searchBystock();
+            break;
+        default:
+            printf("Error: no Search mode Exist");
+    }
+
+}
+
+void deleteProduct(int code) {
+    // TODO: remove Product based on Product Code
 }
