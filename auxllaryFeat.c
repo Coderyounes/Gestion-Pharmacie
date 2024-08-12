@@ -14,3 +14,8 @@ void Welcome(void) {
            "7: Acheter Un Produit\n"
            "8: Lister les Statistique de vente\n");
 }
+
+
+float CalcTTC(float price) {
+    return ((15/price) * 100) + price;
+}

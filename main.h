@@ -6,12 +6,6 @@
 #include <stdlib.h>
 
 
-// TODO: Define product Struct
-// TODO: Define product Operations
-// TODO: Define File Operations
-// TODO: Define Memory Operations
-// TODO: Define Auxillary Functions
-
 typedef struct produit
 {
     int code;

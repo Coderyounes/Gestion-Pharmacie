@@ -28,6 +28,7 @@ void addProduct(void) {
 }
 
 void readProducts(void) {
+    // TODO: Sort the data based on alphabitiques &  based on Prices from High to Low
     char buffer[MAX];
     int code;
     char name[MAX];
@@ -38,7 +39,11 @@ void readProducts(void) {
 
     while(fgets(buffer, sizeof(buffer), fp)) {
         sscanf(buffer, "%d %s %d %f", &code, name, &quantite, &price);
-        printf("Product %d: %s, Price: %.2f DH, Etat De Stock: %d\n", code, name, price, quantite);
+        printf("Product %d: %s, Price: %.2f DH, Price TTC:  %.2f DH, Etat De Stock: %d\n", code,
+                                                                                            name,
+                                                                                            price,
+                                                                                            CalcTTC(price),
+                                                                                            quantite);
     }
 
     fclose(fp);
