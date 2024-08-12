@@ -19,8 +19,7 @@ int main(void) {
                 printf("Program is Closing....\n");
                 exit(0);
             case 1:
-                // TODO: call addProduct function
-                printf(" Our Selection: %d\n", Ops);
+                addProduct();
                 break;
             case 2:
                 // TODO: call AddProducts function

@@ -1,6 +1,6 @@
 #ifndef MAIN_H
 #define MAIN_H
-#define MAX 1024;
+#define MAX 1024
 
 #include <stdio.h>
 #include <stdlib.h>
