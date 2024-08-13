@@ -68,6 +68,7 @@ void readProducts(int mode) {
             sortByprice(fp);
             break;
         case 2:
+            // TODO: sort by Alphabet
             //sortByAlphbet(fp);
             break;
         default:

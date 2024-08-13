@@ -44,10 +44,10 @@ void sellProduct(int code, int quantity);
 void Welcome(void);
 float CalcTTC(float price);
 int countLines(FILE *fp);
+void bubbleSort(Produit_t products[], int count);
 void defaultSort(FILE *fp);
 void sortByprice(FILE *fp);
 void sortByAlphbet(FILE *fp);
-
 
 
 #endif /* MAIN_H */
