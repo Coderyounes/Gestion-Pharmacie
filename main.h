@@ -19,9 +19,17 @@ typedef struct produit
     float price;
 } Produit_t;
 
-// TODO: new struct to handle the sell Stats
-// TODO: Make the Product Code autogenerate Incremently
+// Data Example: 25.30 Mon Aug 12 23:55:52 2024
+typedef struct Log {
+    float price;
+    char weekday[20];
+    char month[20];
+    int  monthday;
+    char time[20];
+    int year;
+} Log_t;
 
+// TODO: Make the Product Code autogenerate Incremently
 
 // Product Operations
 void addProduct(void);
