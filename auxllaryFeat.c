@@ -21,6 +21,17 @@ float CalcTTC(float price) {
     return new + price;
 }
 
+
+int countLines(FILE *fp) {
+    int count = 0;
+    char buffer[MAX];
+
+    while(fgets(buffer, sizeof(buffer), fp)) {
+        count++;
+    }
+    return count;
+}
+
 void defaultSort(FILE *fp) {
     char buffer[MAX];
     Produit_t *tempProduct = malloc(sizeof(Produit_t));
@@ -44,5 +55,37 @@ void defaultSort(FILE *fp) {
     free(tempProduct);
 }
 
-void sortByprice(void) {}
-void sortByAlphbet(void) {}
+void bubbleSort(Produit_t products[], int count) {
+    for (int i = 0; i < count - 1; i++) {
+        for (int j = 0; j < count - i - 1; j++) {
+            if (products[j].price < products[j + 1].price) {
+                Produit_t temp = products[j];
+                products[j] = products[j + 1];
+                products[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void sortByprice(FILE *fp) {
+    char buffer[MAX];
+    int i = 0, lines = countLines(fp);
+    Produit_t products[lines];
+    rewind(fp);
+    while(fgets(buffer, sizeof(buffer), fp) != NULL) {
+        sscanf(buffer, "%d %s %d %f", &products[i].code,
+                                      products[i].name,
+                                      &products[i].quantite,
+                                      &products[i].price);
+        i++;
+    }
+    bubbleSort(products, lines);
+    for (i = 0; i < lines; i++) {
+        printf("Product %d: %s, Quantity: %d, Price: %.2f\n",
+               products[i].code,
+               products[i].name,
+               products[i].quantite,
+               products[i].price);
+    }
+}
+void sortByAlphbet(FILE *fp) {}

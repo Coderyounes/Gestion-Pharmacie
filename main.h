@@ -43,9 +43,10 @@ void sellProduct(int code, int quantity);
 // Auxlarry Function;
 void Welcome(void);
 float CalcTTC(float price);
+int countLines(FILE *fp);
 void defaultSort(FILE *fp);
-void sortByprice(void);
-void sortByAlphbet(void);
+void sortByprice(FILE *fp);
+void sortByAlphbet(FILE *fp);
 
 
 
