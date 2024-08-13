@@ -79,4 +79,3 @@ void sellProduct(int target_code, int quantity) {
     rename("temp.txt", fileName);
     free(tempProduct);
 }
-// TODO: create a function to Display Selling Stats

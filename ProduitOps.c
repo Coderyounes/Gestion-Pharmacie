@@ -68,8 +68,7 @@ void readProducts(int mode) {
             sortByprice(fp);
             break;
         case 2:
-            // TODO: sort by Alphabet
-            //sortByAlphbet(fp);
+            sortByAlphbet(fp);
             break;
         default:
             printf("Enter a Number From 0 to 2\n");
