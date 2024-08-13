@@ -20,6 +20,8 @@ typedef struct produit
 } Produit_t;
 
 // TODO: new struct to handle the sell Stats
+// TODO: Make the Product Code autogenerate Incremently
+
 
 // Product Operations
 void addProduct(void);
