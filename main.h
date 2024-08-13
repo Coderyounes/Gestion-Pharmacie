@@ -18,10 +18,12 @@ typedef struct produit
     float price;
 } Produit_t;
 
+// TODO: new struct to handle the sell Stats
+
 // Product Operations
 void addProduct(void);
 void addProducts(int limit);
-void readProducts(void);
+void readProducts(int mode);
 void deleteProduct(int targetcode);
 
 // Search & their types
@@ -41,6 +43,7 @@ void sellProduct(int code, int quantity);
 // Auxlarry Function;
 void Welcome(void);
 float CalcTTC(float price);
+void defaultSort(FILE *fp);
 void sortByprice(void);
 void sortByAlphbet(void);
 

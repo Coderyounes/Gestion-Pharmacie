@@ -58,29 +58,20 @@ void addProducts(int limit) {
      fclose(fp);
 }
 
-void readProducts(void) {
-    // TODO: Sort the data based on alphabitiques &  based on Prices from High to Low
-    char buffer[MAX];
-    Produit_t *tempProduct = malloc(sizeof(Produit_t));
-    if (tempProduct == NULL) {
-        perror(FMEMO);
-        exit(1);
-    }
+void readProducts(int mode) {
     FILE *fp = openFile(fileName, "r");
-
-    while(fgets(buffer, sizeof(buffer), fp)) {
-        sscanf(buffer, "%d %s %d %f", &tempProduct->code,
-                                      tempProduct->name,
-                                      &tempProduct->quantite,
-                                      &tempProduct->price);
-        printf("Product %d: %s, Price: %.2f DH, Price TTC:  %.2f DH, Etat De Stock: %d\n", tempProduct->code,
-                                                                                            tempProduct->name,
-                                                                                            tempProduct->price,
-                                                                                            CalcTTC(tempProduct->price),
-                                                                                            tempProduct->quantite);
+    switch(mode) {
+        case 0:
+            defaultSort(fp);
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        default:
+            printf("Enter a Number From 0 to 2\n");
     }
     fclose(fp);
-    free(tempProduct);
 }
 
 void deleteProduct(int targetcode) {

@@ -5,7 +5,7 @@
 */
 
 int main(void) {
-    int Ops, limit, identifier, code, aliment, unit;
+    int Ops, limit, identifier, code, aliment, unit, mode;
     FILE *fp;
     char *symbol = "*******";
     printf("%s Bienvenue!%s\n\n%sGestion Des Produits%s\n", symbol, symbol, symbol, symbol);
@@ -27,7 +27,10 @@ int main(void) {
                 addProducts(limit);
                 break;
             case 3:
-                readProducts();
+                printf("Select the Sort Mode\n1: by Price\n2: By alphabet\n0: default\n");
+                printf("enter your choice: ");
+                scanf("%d", &mode);
+                readProducts(mode);
                 break;
             case 4:
                 printf("Delete Operation, Enter Product Code: ");
