@@ -5,7 +5,7 @@
 */
 
 int main(void) {
-    int Ops, limit, identifier, code, aliment, unit, mode;
+    int Ops, limit, identifier, code, aliment, unit, mode, choice;
     FILE *fp;
     char *symbol = "*******";
     printf("%s Bienvenue!%s\n\n%sGestion Des Produits%s\n", symbol, symbol, symbol, symbol);
@@ -61,7 +61,10 @@ int main(void) {
                 sellProduct(code, aliment);
                 break;
             case 8:
-                // TODO: call DisplayStats function
+                printf("1: Show all the Sells\n2: Higher Sell of the day\n3: Cheapest Sell of the day\n4: average sells");
+                printf("Enter your Choice");
+                scanf("%d", &choice);
+                getStat(choice);
                 break;
             default:
                 printf("Error: Enter number from 0 to 8\n");

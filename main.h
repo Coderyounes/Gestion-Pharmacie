@@ -19,7 +19,6 @@ typedef struct produit
     float price;
 } Produit_t;
 
-// Data Example: 25.30 Mon Aug 12 23:55:52 2024
 typedef struct Log {
     float price;
     char weekday[20];
@@ -63,5 +62,7 @@ void defaultSort(FILE *fp);
 void sortByprice(FILE *fp);
 void sortByAlphbet(FILE *fp);
 
+// Stat Operation
+void getStat(int choice);
 
 #endif /* MAIN_H */
