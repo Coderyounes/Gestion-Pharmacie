@@ -54,6 +54,7 @@ void sellProduct(int code, int quantity);
 void Welcome(void);
 float CalcTTC(float price);
 int countLines(FILE *fp);
+struct tm *timeNow(void);
 
 // Sort Operations
 void bubbleSortByNames(Produit_t products[], int count);

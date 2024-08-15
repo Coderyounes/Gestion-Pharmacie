@@ -61,8 +61,8 @@ int main(void) {
                 sellProduct(code, aliment);
                 break;
             case 8:
-                printf("1: Show all the Sells\n2: Higher Sell of the day\n3: Cheapest Sell of the day\n4: average sells");
-                printf("Enter your Choice");
+                printf("1: Show all the Sells\n2: Higher Sell of the day\n3: Cheapest Sell of the day\n4: average sells\n");
+                printf("Enter your Choice: ");
                 scanf("%d", &choice);
                 getStat(choice);
                 break;

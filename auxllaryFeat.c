@@ -32,3 +32,12 @@ int countLines(FILE *fp) {
     rewind(fp);
     return count;
 }
+
+struct tm *timeNow(void) {
+    time_t t;
+    struct tm *tm_info;
+
+    time(&t);
+    tm_info = localtime(&t);
+    return tm_info;
+}

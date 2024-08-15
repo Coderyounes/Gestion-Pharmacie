@@ -15,22 +15,18 @@ float allSells(void) {
         perror(FMEMO);
         exit(1);
     }
-    /*
-    float price;
-    char weekday[20];
-    char month[20];
-    int  monthday;
-    char time[20];
-    int year;*/
-    // 25.30 Mon Aug 12 23:55:52 2024
-    // TODO: find Solution to parse the day & Hour and use them to aggregate the total
+	struct tm *t = timeNow();
     while(fgets(buffer, sizeof(buffer), fp) != NULL) {
-        sscanf(buffer, "%f %s %d %s %d", &tempSells->price,
+        sscanf(buffer, "%f %s %s %d %s %d", &tempSells->price,
+                                      tempSells->weekday,
                                       tempSells->month,
                                       &tempSells->monthday,
-                                      tempSells->time,
+									  tempSells->time,
                                       &tempSells->year);
-        total += tempSells->price;
+		// TODO: Implement Other Condition to Verfiy the Month & Year
+		if (t->tm_mday == tempSells->monthday) {
+			total += tempSells->price;
+				}
     }
     fclose(fp);
     free(tempSells);
@@ -46,7 +42,7 @@ float allSells(void) {
 void getStat(int choice) {
     switch(choice) {
         case 1:
-            printf("the Total Sells: %.2f", allSells());
+            printf("the Total Sells: %.2f\n", allSells());
             break;
         case 2:
             //highSell();
