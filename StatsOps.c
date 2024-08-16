@@ -15,8 +15,6 @@ float allSells(void) {
         perror(FMEMO);
         exit(1);
     }
-/*			&& (t->tm_year == tempSells->year)
-			&& (t->tm_mon == monthEvaluation(tempSells->month))*/
 	struct tm *t = timeNow();
     while(fgets(buffer, sizeof(buffer), fp) != NULL) {
         sscanf(buffer, "%f %s %s %d %s %d", &tempSells->price,
@@ -25,7 +23,9 @@ float allSells(void) {
                                       &tempSells->monthday,
 									  tempSells->time,
                                       &tempSells->year);
-		if ((t->tm_mday == tempSells->monthday) && (t->tm_year + 1900 == tempSells->year) && (t->tm_mon + 1 == monthEvaluation(tempSells->month))) {
+		if ((t->tm_mday == tempSells->monthday)
+            && (t->tm_year + 1900 == tempSells->year)
+            && (t->tm_mon + 1 == monthEvaluation(tempSells->month))) {
 			total += tempSells->price;
 				}
     }
@@ -46,12 +46,15 @@ void getStat(int choice) {
             printf("the Total Sells: %.2f\n", allSells());
             break;
         case 2:
+            // TODO: variable contain the Max until traverse the the complete list
             //highSell();
             break;
         case 3:
+            // TODO: reverse the Max Function
             //cheapSell();
             break;
         case 4:
+             // TODO: search for the Caluclation
             //averageSell();
             break;
         default:
