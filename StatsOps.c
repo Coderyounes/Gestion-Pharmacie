@@ -15,6 +15,8 @@ float allSells(void) {
         perror(FMEMO);
         exit(1);
     }
+/*			&& (t->tm_year == tempSells->year)
+			&& (t->tm_mon == monthEvaluation(tempSells->month))*/
 	struct tm *t = timeNow();
     while(fgets(buffer, sizeof(buffer), fp) != NULL) {
         sscanf(buffer, "%f %s %s %d %s %d", &tempSells->price,
@@ -23,8 +25,7 @@ float allSells(void) {
                                       &tempSells->monthday,
 									  tempSells->time,
                                       &tempSells->year);
-		// TODO: Implement Other Condition to Verfiy the Month & Year
-		if (t->tm_mday == tempSells->monthday) {
+		if ((t->tm_mday == tempSells->monthday) && (t->tm_year + 1900 == tempSells->year) && (t->tm_mon + 1 == monthEvaluation(tempSells->month))) {
 			total += tempSells->price;
 				}
     }

@@ -41,3 +41,18 @@ struct tm *timeNow(void) {
     tm_info = localtime(&t);
     return tm_info;
 }
+
+int monthEvaluation(char *month) {
+    char *months[] = {
+        "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+    };
+
+    for (int i = 0; i < 12; i++) {
+        if (strcmp(month, months[i]) == 0) {
+            return i + 1;
+        }
+    }
+
+    return -1;
+}

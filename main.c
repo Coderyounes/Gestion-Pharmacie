@@ -51,7 +51,8 @@ int main(void) {
                 scanf("%d", &code);
                 printf("How much unit to add: ");
                 scanf("%d", &unit);
-                addStock(code, unit);
+             		// TODO: Implement Other Condition to Verfiy the Month & Year
+   addStock(code, unit);
                 break;
             case 7:
                 printf("Enter Product Code: ");

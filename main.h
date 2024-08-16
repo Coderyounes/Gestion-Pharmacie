@@ -55,6 +55,8 @@ void Welcome(void);
 float CalcTTC(float price);
 int countLines(FILE *fp);
 struct tm *timeNow(void);
+int monthEvaluation(char *month);
+
 
 // Sort Operations
 void bubbleSortByNames(Produit_t products[], int count);
