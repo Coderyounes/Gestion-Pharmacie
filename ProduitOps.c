@@ -1,6 +1,8 @@
 #include "main.h"
 
-
+// TODO: Implement a method To Set the ID autoIncrement
+// TODO: the IDeas is to generate the ID based on the File Lines
+// TODO: After the Delete we should Have a function reOrganize the IDs again
 
 void addProduct(void) {
     char buffer[MAX];
