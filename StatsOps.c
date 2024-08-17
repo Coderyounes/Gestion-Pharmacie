@@ -92,7 +92,35 @@ float cheapSell(void) {
     return min;
 }
 
-//void averageSell(void) {}
+float averageSell(void) {
+    char buffer[MAX];
+    FILE *fp;
+    Log_t *tempSells;
+    int lines;
+    float total;
+    float min = highSell();
+
+    tempSells = malloc(sizeof(Log_t));
+    if (!tempSells) {
+        perror(FMEMO);
+        exit(1);
+    }
+    fp = openFile(sellFile, "r");
+    lines = countLines(fp);
+    while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+        sscanf(buffer, "%f %s %s %d %s %d", &tempSells->price,
+                          tempSells->weekday,
+                          tempSells->month,
+                          &tempSells->monthday,
+						  tempSells->time,
+                          &tempSells->year);
+            total += tempSells->price;
+        }
+
+    fclose(fp);
+    free(tempSells);
+    return total / lines;
+}
 
 void getStat(int choice) {
     switch(choice) {
@@ -106,8 +134,7 @@ void getStat(int choice) {
             printf("The lowest Product sale today is %.2f\n", cheapSell());
             break;
         case 4:
-             // TODO: search for the Caluclation
-            //averageSell();
+            printf("The average Sale is %.2f\n", averageSell());
             break;
         default:
             printf("Enter a number from 1 to 3\n");
