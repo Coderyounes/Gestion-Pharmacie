@@ -7,19 +7,20 @@
 void addProduct(void) {
     char buffer[MAX];
     int status;
+    int lines;
     FILE *fp;
     Produit_t *newProduct = malloc(sizeof(Produit_t));
-
     if (!newProduct) {
         perror(FMEMO);
         exit(1);
     }
     fp = openFile(fileName, "a");
+    lines = countLines(fp);
+    newProduct->code = lines + 1;
     getchar();
-    printf("Enter Code, Name, quantite, price (separated by spaces): ");
+    printf("Enter Name, quantite, price (separated by spaces): ");
     if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
-        sscanf(buffer,"%d %s %d %f", &newProduct->code,
-                                     newProduct->name,
+        sscanf(buffer,"%s %d %f", newProduct->name,
                                      &newProduct->quantite,
                                      &newProduct->price);
     }
@@ -35,20 +36,25 @@ void addProducts(int limit) {
      char buffer[MAX];
      int count = 0;
      FILE *fp;
+     int track;
+
      fp = openFile(fileName, "a");
+     track = countLines(fp); // TODO: fix issue return 0 as lines Count
+     printf("Lines are: %d", track);
      while (count < limit) {
          Produit_t *newProduct = malloc(sizeof(Produit_t));
          if (!newProduct) {
              perror("Failed to Allocate Memory");
              exit(1);
          }
-         printf("Enter Code, Name, quantite, price (separated by spaces):");
+         // TODO: fix issue with getchar(), first char from name get truntcanted some times
+         printf("Enter Name, quantite, price (separated by spaces): ");
          getchar();
          if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
-             sscanf(buffer,"%d %s %d %f", &newProduct->code,
-                                          newProduct->name,
+             sscanf(buffer,"%s %d %f", newProduct->name,
                                           &newProduct->quantite,
                                           &newProduct->price);
+             newProduct->code = track++;
          }
          fprintf(fp,"\n%d %s %d %.2f", newProduct->code,
                                newProduct->name,
@@ -99,6 +105,7 @@ void deleteProduct(int targetcode) {
                                             tempProduct->quantite,
                                             tempProduct->price);
         }
+        // TODO: Create a Logic to ReOgranize the Data IDs
     }
     fclose(fp);
     fclose(temp);
