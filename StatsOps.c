@@ -43,6 +43,7 @@ float highSell(void) {
         perror(FMEMO);
         exit(1);
     }
+    struct tm *t = timeNow();
     fp = openFile(sellFile, "r");
     while (fgets(buffer, sizeof(buffer), fp) != NULL) {
         sscanf(buffer, "%f %s %s %d %s %d", &tempSells->price,
@@ -51,12 +52,14 @@ float highSell(void) {
                           &tempSells->monthday,
 						  tempSells->time,
                           &tempSells->year);
-            // TODO: implement the dat CHeck
-            if (max < tempSells->price) {
+        if ((t->tm_mday == tempSells->monthday)
+            && (t->tm_year + 1900 == tempSells->year)
+            && (t->tm_mon + 1 == monthEvaluation(tempSells->month))) {
+           if (max < tempSells->price) {
               max = tempSells->price;
             }
         }
-
+        }
     fclose(fp);
     free(tempSells);
     return max;
@@ -67,7 +70,7 @@ float cheapSell(void) {
     FILE *fp;
     Log_t *tempSells;
     float min = highSell();
-
+    struct tm *t = timeNow();
     tempSells = malloc(sizeof(Log_t));
     if (!tempSells) {
         perror(FMEMO);
@@ -81,9 +84,12 @@ float cheapSell(void) {
                           &tempSells->monthday,
 						  tempSells->time,
                           &tempSells->year);
-            // TODO: implement the dat CHeck
-            if (tempSells->price < min) {
-              min = tempSells->price;
+            if ((t->tm_mday == tempSells->monthday)
+            && (t->tm_year + 1900 == tempSells->year)
+            && (t->tm_mon + 1 == monthEvaluation(tempSells->month))) {
+                 if (tempSells->price < min) {
+                    min = tempSells->price;
+                 }
             }
         }
 
@@ -99,6 +105,7 @@ float averageSell(void) {
     int lines;
     float total;
     float min = highSell();
+    struct tm *t = timeNow();
 
     tempSells = malloc(sizeof(Log_t));
     if (!tempSells) {
@@ -114,7 +121,11 @@ float averageSell(void) {
                           &tempSells->monthday,
 						  tempSells->time,
                           &tempSells->year);
-            total += tempSells->price;
+            if ((t->tm_mday == tempSells->monthday)
+            && (t->tm_year + 1900 == tempSells->year)
+            && (t->tm_mon + 1 == monthEvaluation(tempSells->month))) {
+                    total += tempSells->price;
+            }
         }
 
     fclose(fp);
