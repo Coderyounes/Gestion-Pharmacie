@@ -67,5 +67,6 @@ void sortByAlphbet(FILE *fp);
 
 // Stat Operation
 void getStat(int choice);
-
+float allSells(void);
+float highSell(void);
 #endif /* MAIN_H */

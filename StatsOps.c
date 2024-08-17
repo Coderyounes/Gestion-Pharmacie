@@ -3,14 +3,12 @@
 
 float allSells(void) {
     char buffer[MAX];
-    int lines;
     float total = 0;
     Log_t *tempSells;
     FILE *fp;
 
     fp = openFile(sellFile, "r");
-    lines = countLines(fp);
-    tempSells = malloc(sizeof(Produit_t));
+    tempSells = malloc(sizeof(Log_t));
     if (!tempSells) {
         perror(FMEMO);
         exit(1);
@@ -34,9 +32,65 @@ float allSells(void) {
     return total;
 }
 
-//void highSell(void) {}
+float highSell(void) {
+    char buffer[MAX];
+    FILE *fp;
+    Log_t *tempSells;
+    float max = 0;
 
-//void cheapSell(void) {}
+    tempSells = malloc(sizeof(Log_t));
+    if (!tempSells) {
+        perror(FMEMO);
+        exit(1);
+    }
+    fp = openFile(sellFile, "r");
+    while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+        sscanf(buffer, "%f %s %s %d %s %d", &tempSells->price,
+                          tempSells->weekday,
+                          tempSells->month,
+                          &tempSells->monthday,
+						  tempSells->time,
+                          &tempSells->year);
+            // TODO: implement the dat CHeck
+            if (max < tempSells->price) {
+              max = tempSells->price;
+            }
+        }
+
+    fclose(fp);
+    free(tempSells);
+    return max;
+}
+
+float cheapSell(void) {
+    char buffer[MAX];
+    FILE *fp;
+    Log_t *tempSells;
+    float min = highSell();
+
+    tempSells = malloc(sizeof(Log_t));
+    if (!tempSells) {
+        perror(FMEMO);
+        exit(1);
+    }
+    fp = openFile(sellFile, "r");
+    while (fgets(buffer, sizeof(buffer), fp) != NULL) {
+        sscanf(buffer, "%f %s %s %d %s %d", &tempSells->price,
+                          tempSells->weekday,
+                          tempSells->month,
+                          &tempSells->monthday,
+						  tempSells->time,
+                          &tempSells->year);
+            // TODO: implement the dat CHeck
+            if (tempSells->price < min) {
+              min = tempSells->price;
+            }
+        }
+
+    fclose(fp);
+    free(tempSells);
+    return min;
+}
 
 //void averageSell(void) {}
 
@@ -46,12 +100,10 @@ void getStat(int choice) {
             printf("the Total Sells: %.2f\n", allSells());
             break;
         case 2:
-            // TODO: variable contain the Max until traverse the the complete list
-            //highSell();
+            printf("The High Product Sale today is %.2f\n", highSell());
             break;
         case 3:
-            // TODO: reverse the Max Function
-            //cheapSell();
+            printf("The lowest Product sale today is %.2f\n", cheapSell());
             break;
         case 4:
              // TODO: search for the Caluclation
