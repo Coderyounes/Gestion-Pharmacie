@@ -28,8 +28,6 @@ typedef struct Log {
     int year;
 } Log_t;
 
-// TODO: Make the Product Code autogenerate Incremently
-
 // Product Operations
 void addProduct(void);
 void addProducts(int limit);

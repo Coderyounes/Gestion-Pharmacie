@@ -1,7 +1,5 @@
 #include "main.h"
 
-// TODO: Implement a method To Set the ID autoIncrement
-// TODO: the IDeas is to generate the ID based on the File Lines
 // TODO: After the Delete we should Have a function reOrganize the IDs again
 
 void addProduct(void) {
@@ -36,11 +34,12 @@ void addProducts(int limit) {
      char buffer[MAX], c;
      int count = 0;
      FILE *fp;
+     FILE *temp;
      int track;
 
      fp = openFile(fileName, "a");
-     track = countLines(fp); // TODO: fix issue return 0 as lines Count
-     //printf("Lines are: %d", track);
+     temp = openFile(fileName, "r");
+     track = countLines(temp);
      getchar();
      while (count < limit) {
          Produit_t *newProduct = malloc(sizeof(Produit_t));
@@ -63,6 +62,7 @@ void addProducts(int limit) {
          free(newProduct);
      }
      fclose(fp);
+     fclose(temp);
 }
 
 void readProducts(int mode) {
