@@ -1,6 +1,5 @@
 #include "main.h"
 
-// TODO: After the Delete we should Have a function reOrganize the IDs again
 
 void addProduct(void) {
     char buffer[MAX];
@@ -85,6 +84,7 @@ void readProducts(int mode) {
 
 void deleteProduct(int targetcode) {
     char buffer[MAX];
+    int line;
     Produit_t *tempProduct = malloc(sizeof(Produit_t));
     if (tempProduct == NULL) {
         perror(FMEMO);
@@ -93,18 +93,23 @@ void deleteProduct(int targetcode) {
     FILE *fp, *temp;
     fp = openFile(fileName, "r");
     temp = openFile("temp.txt", "w+");
+    line = 1;
     while(fgets(buffer, sizeof(buffer), fp) != NULL) {
         sscanf(buffer, "%d %s %d %f", &tempProduct->code,
                                       tempProduct->name,
                                       &tempProduct->quantite,
                                       &tempProduct->price);
-        if (tempProduct->code != targetcode) {
-            fprintf(temp,"%d %s %d %.2f\n", tempProduct->code,
+        if (tempProduct->code > targetcode) {
+            fprintf(temp,"%d %s %d %.2f\n", tempProduct->code - 1,
                                             tempProduct->name,
                                             tempProduct->quantite,
                                             tempProduct->price);
+        } else if (tempProduct->code != targetcode) {
+            fprintf(temp,"%d %s %d %.2f\n", tempProduct->code,
+                                tempProduct->name,
+                                tempProduct->quantite,
+                                tempProduct->price);
         }
-        // TODO: Create a Logic to ReOgranize the Data IDs
     }
     fclose(fp);
     fclose(temp);
