@@ -33,25 +33,24 @@ void addProduct(void) {
 }
 
 void addProducts(int limit) {
-     char buffer[MAX];
+     char buffer[MAX], c;
      int count = 0;
      FILE *fp;
      int track;
 
      fp = openFile(fileName, "a");
      track = countLines(fp); // TODO: fix issue return 0 as lines Count
-     printf("Lines are: %d", track);
+     //printf("Lines are: %d", track);
+     getchar();
      while (count < limit) {
          Produit_t *newProduct = malloc(sizeof(Produit_t));
          if (!newProduct) {
              perror("Failed to Allocate Memory");
              exit(1);
          }
-         // TODO: fix issue with getchar(), first char from name get truntcanted some times
          printf("Enter Name, quantite, price (separated by spaces): ");
-         getchar();
          if (fgets(buffer, sizeof(buffer), stdin) != NULL) {
-             sscanf(buffer,"%s %d %f", newProduct->name,
+             sscanf(buffer, "%s %d %f", newProduct->name,
                                           &newProduct->quantite,
                                           &newProduct->price);
              newProduct->code = track++;
